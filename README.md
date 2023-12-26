@@ -1,29 +1,64 @@
+
 # Project DataBase
 
-**Description:**
+## Description
 
-The Project DataBase is a relational database designed to manage information related to students in College town, departments, locations, rooms, and parents. It is intended to be a comprehensive solution for educational institutions or organizations that require a robust system for storing and organizing data about students, their academic performance, departmental information, geographical locations, living arrangements, and parental details.
+This project is a database management system for handling student information in an College town. It offers basic CRUD operations, navigation, and reporting functionalities. The database includes tables for students, departments, locations, rooms, and parents, with relationships and constraints.
 
-## Database Schema
+### Features
 
-1. **Students Table:**
-   - Stores information about students, including their unique identifier, names, gender, faculty, grade, contact details, and hire date.
+1. **Navigation Block**
+   - Facilitates easy navigation between different sections of the application.
 
-2. **Departments Table:**
-   - Manages details about different departments, such as department ID, name, and the ID of the department manager.
+2. **Database Triggers**
+   - Implements at least one database trigger for automated actions on insert, update, or delete events.
 
-3. **Locations Table:**
-   - Tracks information about locations, including a unique identifier, governrate name, governrate index, and a foreign key linking to the Students table.
+3. **Application Triggers**
+   - Incorporates application triggers as needed for specific event handling.
 
-4. **Room Table:**
-   - Contains data about rooms, such as room ID, building ID, capacity, services provided, and a foreign key linking to the Students table.
+4. **Select Operation for Each Table**
+   - Provides select operations for each table to retrieve data.
 
-5. **Parent Table:**
-   - Stores details about parents, including a unique identifier, names, email, phone number, and a foreign key linking to the Students table.
+5. **Insert Operation for Each Table**
+   - Supports insert operations for adding new records.
 
-## Data Population
+6. **Update Operation for Each Table**
+   - Implements update operations to modify existing records.
 
-The database includes sample data to illustrate its functionality. It showcases students enrolled in various faculties, assigned to departments, living in different locations and rooms, and having parents associated with them.
+7. **Delete Operation for Each Table**
+   - Enables delete operations to remove records.
+
+8. **Record Navigation**
+   - Creates forms with buttons for easy record navigation.
+
+9. **Master Details Form**
+   - Displays detailed information about a selected record, potentially including related records.
+
+10. **Static List Items**
+    - Includes static list items for predefined options in certain fields.
+
+11. **Static Report**
+    - Provides at least one static report for specific information.
+
+12. **Calling Reports from Forms**
+    - Allows direct report calls from forms for enhanced reporting.
+
+### Tables
+
+1. **Students Table**
+   - Attributes: student_id, first_name, last_name, gender, faculty_name, grade, phone_number, email, hire_date
+
+2. **Departments Table**
+   - Attributes: department_id, department_name, manager_id
+
+3. **Locations Table**
+   - Attributes: id, governrate_name, governrate_index, student_id
+
+4. **Room Table**
+   - Attributes: room_id, building_id, capacity, serves, student_id
+
+5. **Parent Table**
+   - Attributes: parent_id, first_name, last_name, email, phone_number, student_id
 
 ## Example Queries
 
@@ -31,10 +66,6 @@ The database includes sample data to illustrate its functionality. It showcases 
 - Identify the parents of a specific student.
 - Find the location and room details for a given student.
 - Obtain information about the departmental manager.
-
-## Usage
-
-This database can be utilized as a foundation for building applications related to student management systems, academic institutions, or any scenario requiring the organized storage of student, department, location, room, and parent data.
 
 
 ## Final.txt
