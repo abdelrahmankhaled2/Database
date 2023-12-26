@@ -36,3 +36,7 @@ The database includes sample data to illustrate its functionality. It showcases 
 
 This database can be utilized as a foundation for building applications related to student management systems, academic institutions, or any scenario requiring the organized storage of student, department, location, room, and parent data.
 
+
+## Final.txt
+-this file include tables and data to insert data in tables
+
