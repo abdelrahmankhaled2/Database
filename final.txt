@@ -1,0 +1,134 @@
+CREATE TABLE students (
+  student_id NUMBER(10) PRIMARY KEY,
+  first_name VARCHAR2(20) NOT NULL,
+  last_name VARCHAR2(20) NOT NULL,
+  gender VARCHAR2(20) NOT NULL,
+  faculty_name VARCHAR2(30),
+  grade VARCHAR2(5) NOT NULL, 
+  phone_number NUMBER(11) NOT NULL UNIQUE,
+  email VARCHAR2(50) NOT NULL UNIQUE,
+  hire_date DATE DEFAULT SYSDATE
+);
+
+INSERT INTO students (student_id, first_name, last_name, gender, faculty_name, grade, phone_number, email, hire_date) 
+VALUES (1001, 'John', 'Doe', 'Male', 'Finance', 'A', '1234567890', 'john.doe@example.com', SYSDATE);
+
+INSERT INTO students (student_id, first_name, last_name, gender, faculty_name, grade, phone_number, email, hire_date) 
+VALUES (1002, 'Jane', 'Smith', 'Female', 'Marketing', 'B', '2345678901', 'jane.smith@example.com', SYSDATE);
+
+INSERT INTO students (student_id, first_name, last_name, gender, faculty_name, grade, phone_number, email, hire_date) 
+VALUES (1003, 'Bob', 'Johnson', 'Male', 'Human Resources', 'C', '3456789012', 'bob.johnson@example.com', SYSDATE);
+
+INSERT INTO students (student_id, first_name, last_name, gender, faculty_name, grade, phone_number, email, hire_date) 
+VALUES (1004, 'Mary', 'Williams', 'Female', 'Information Technology', 'A', '4567890123', 'mary.williams@example.com', SYSDATE);
+
+INSERT INTO students (student_id, first_name, last_name, gender, faculty_name, grade, phone_number, email, hire_date) 
+VALUES (1005, 'Tom', 'Brown', 'Male', 'Research and Development', 'B+', '5678901234', 'tom.brown@example.com', SYSDATE);
+
+INSERT INTO students (student_id, first_name, last_name, gender, faculty_name, grade, phone_number, email, hire_date) 
+VALUES (1006, 'Alice', 'Davis', 'Female', 'Sales', 'C+', '6789012345', 'alice.davis@example.com', SYSDATE);
+
+
+CREATE TABLE departments (
+  department_id NUMBER(10) PRIMARY KEY,
+  department_name VARCHAR2(20) NOT NULL,
+  manager_id NUMBER(10) NOT NULL,
+);
+
+INSERT INTO departments (department_id, department_name, manager_id) VALUES (101, 'Finance', 1001);
+INSERT INTO departments (department_id, department_name, manager_id) VALUES (102, 'Marketing', 1002);
+INSERT INTO departments (department_id, department_name, manager_id) VALUES (103, 'Human Resources', 1003);
+INSERT INTO departments (department_id, department_name, manager_id) VALUES (104, 'IT', 1004);
+INSERT INTO departments (department_id, department_name, manager_id) VALUES (105, 'Development', 1005);
+INSERT INTO departments (department_id, department_name, manager_id) VALUES (106, 'Sales', 1006);
+
+
+ALTER TABLE students
+ADD (department_id NUMBER(10));
+
+
+CREATE TABLE locations (
+  id NUMBER(10) PRIMARY KEY,
+  governrate_name VARCHAR2(20) NOT NULL,
+  governrate_index NUMBER(10) NOT NULL,
+  student_id NUMBER(10) NOT NULL,
+  CONSTRAINT loc_student_id_fk FOREIGN KEY (student_id) REFERENCES students(student_id)
+);
+
+-- insert data into the locations table
+INSERT INTO locations (id, governrate_name, governrate_index, student_id)
+VALUES (1, 'Cairo', 1, 1001);
+
+INSERT INTO locations (id, governrate_name, governrate_index, student_id)
+VALUES (2, 'Alexandria', 2, 1002);
+
+INSERT INTO locations (id, governrate_name, governrate_index, student_id)
+VALUES (3, 'Assiut', 3, 1003);
+
+INSERT INTO locations (id, governrate_name, governrate_index, student_id)
+VALUES (4, 'Luxor', 4, 1004);
+
+INSERT INTO locations (id, governrate_name, governrate_index, student_id)
+VALUES (5, 'Aswan', 5, 1005);
+
+INSERT INTO locations (id, governrate_name, governrate_index, student_id)
+VALUES (7, 'Daqahliya', 3, 1006);
+
+
+
+
+CREATE TABLE room (
+  room_id INT PRIMARY KEY,
+  building_id NUMBER(10) NOT NULL,
+  capacity NUMBER(10) NOT NULL,
+  serves VARCHAR2(30),
+  student_id NUMBER(10) NOT NULL,
+  CONSTRAINT room_student_id_fk FOREIGN KEY (student_id) REFERENCES students(student_id)
+);
+
+INSERT INTO room (room_id, building_id, capacity, serves, student_id)
+VALUES (1, 101, 4, 'Internet', 1001);
+
+INSERT INTO room (room_id, building_id, capacity, serves, student_id)
+VALUES (2, 102, 2, 'TV', 1002);
+
+INSERT INTO room (room_id, building_id, capacity, serves, student_id)
+VALUES (3, 103, 3, 'Inside Kitchen', 1003);
+
+INSERT INTO room (room_id, building_id, capacity, serves, student_id)
+VALUES (4, 104, 4, 'Multi', 1004);
+
+INSERT INTO room (room_id, building_id, capacity, serves, student_id)
+VALUES (5, 105, 3, 'Internet', 1005);
+
+INSERT INTO room (room_id, building_id, capacity, serves, student_id)
+VALUES (6, 106, 2, 'TV', 1006);
+
+CREATE TABLE parent (
+  parent_id NUMBER(10) PRIMARY KEY,
+  first_name VARCHAR2(20) NOT NULL,
+  last_name VARCHAR2(20) NOT NULL,
+  email VARCHAR(100) UNIQUE,
+  phone_number NUMBER(11),
+  student_id NUMBER(10) NOT NULL,
+  CONSTRAINT parent_student_fk FOREIGN KEY (student_id) REFERENCES students(student_id)
+);
+
+
+INSERT INTO parent (parent_id, first_name, last_name, email, phone_number, student_id)
+VALUES (1, 'Johnson', 'Lee','johnson@example.com',10203040507,1001);
+
+INSERT INTO parent (parent_id, first_name, last_name, email, phone_number, student_id)
+VALUES (2, 'Brown', 'Garcia','brown@example.com',10203040508,1002);
+
+INSERT INTO parent (parent_id, first_name, last_name, email, phone_number, student_id)
+VALUES (3, 'Davis', 'Singh','davis@example.com',10203040509,1003);
+
+INSERT INTO parent (parent_id, first_name, last_name, email, phone_number, student_id)
+VALUES (4, 'Garcia', 'Kim','garcia@example.com',10203040510,1004);
+
+INSERT INTO parent (parent_id, first_name, last_name, email, phone_number, student_id)
+VALUES (5, 'Martinez', 'Chen','martinez@example.com',10203040511,1005);
+
+INSERT INTO parent (parent_id, first_name, last_name, email, phone_number, student_id)
+VALUES (6, 'Miller', 'Brown','miller@example.com',10203040512,1006);
